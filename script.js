@@ -25,7 +25,23 @@ const quotes = [
     text: "Life is what happens when you're busy making other plans.",
     author: "John Lennon",
   },
+  {
+    text: "Spread love everywhere you go. Let no one ever come to you without leaving happier.",
+    author: "Mother Teresa",
+  },
+  {
+    text: "When you reach the end of your rope, tie a knot in it and hang on.",
+    author: "Franklin D. Roosevelt",
+  },
 ];
+
+// *** Helper to get initials ***
+function getInitials(name) {
+  return name
+    .split(" ")
+    .map((word) => word[0])
+    .join("");
+}
 
 // --- Functions ---
 function getRandomQuote() {
@@ -40,13 +56,15 @@ function displayQuote() {
   // Step 2: Set the text content of the quote paragraph
   quoteTextElement.textContent = `"${quote.text}"`; // Add quotes around the text
   // Step 3: Set the text content of the author paragraph
-  quoteAuthorElement.textContent = `- ${quote.author}`;
+  const initials = getInitials(quote.author);
+  quoteAuthorElement.textContent = `- ${quote.author} (${initials})`;
 }
 
 // --- Event Listeners ---
 // Display a random quote when the button is clicked
 if (newQuoteButton) {
   // Check if button exists before adding listener
+  console.log("Button found, adding listener.");
   newQuoteButton.addEventListener("click", displayQuote);
 } else {
   console.error("Button with ID 'new-quote-btn' not found.");
